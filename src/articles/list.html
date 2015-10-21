@@ -1,0 +1,30 @@
+<template>
+    <div class="container">
+        <table class="table">
+            <tr>
+                <th>Title</th>
+                <th>Content</th>
+                <th>
+                    <a show.bind="isAuthenticated" route-href="route:create;" class="btn btn-default">Create New
+                    </a>
+                    <a show.bind="!isAuthenticated" route-href="route:create;" class="btn btn-default">Sign In to see more.
+                    </a>
+                    <a show.bind="isAuthenticated && !hasActiveSubscription" route-href="route:profile;" class="btn btn-danger">Unlock editing
+                    </a>
+                </th>
+            </tr>
+            <tr repeat.for="article of articles">
+                <td>${article.title}</td>
+                <td>${article.content.substring(0,29)}...</td>
+                <td>
+                    <div class="" show.bind="$parent.isAuthenticated && $parent.ownResource(article) && $parent.hasActiveSubscription" >
+                        <a route-href="route:edit; params.bind:{id:article._id}"  class="btn btn-default">Edit
+                        </a>
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</template>

@@ -1,0 +1,29 @@
+<template id="">
+    <section class="au-animate">
+        <div class="container">
+            <div class="panel panel-default col-md-12">
+                <div class="panel-heading">Profile</div>
+                <div class="panel-body">
+                    <legend><i class="ion-clipboard"></i> Edit My Profile</legend>
+
+
+                    <h3>Current plan is : ${plan}</h3>
+
+
+                    <form method="post"  name="paymentForm">
+
+                        <div class="form-group has-feedback">
+                            <input class="form-control input-lg" type="text" name="email" value.bind="email" placeholder="Email" required autofocus>
+                            <span class="ion-at form-control-feedback"></span>
+                        </div>
+
+                        <button type="submit" click.delegate="processPayment()" class="btn btn-lg  btn-block btn-success">Pay me!</button>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+</template>
