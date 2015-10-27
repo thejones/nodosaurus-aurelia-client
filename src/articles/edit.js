@@ -25,7 +25,6 @@ export class Edit {
     }
 
     save() {
-
         this.validation.validate().then(() => {
             this.data.update(this.article)
                 .then(article => {

@@ -60,9 +60,10 @@
       "aurelia-templating-router": "github:aurelia/templating-router@^0.16.0",
       "aurelia-validation": "github:aurelia/validation@^0.3.1",
       "bootstrap": "github:twbs/bootstrap@^3.3.4",
-      "core-js": "npm:core-js@^1.1.4",
+      "core-js": "npm:core-js@^0.9.4",
       "fetch": "github:github/fetch@^0.9.0",
       "font-awesome": "npm:font-awesome@^4.3.0",
+      "lodash": "npm:lodash@^3.10.1",
       "md5": "github:blueimp/JavaScript-MD5@^1.1.1",
       "text": "github:systemjs/plugin-text@^0.0.2"
     },
@@ -94,5 +95,8 @@
   "bugs": {
     "url": "https://github.com/thejones/nodosaurus-aurelia-client/issues"
   },
-  "homepage": "thejones/nodosaurus-aurelia-client"
+  "homepage": "thejones/nodosaurus-aurelia-client",
+  "dependencies": {
+    "lodash": "^3.10.1"
+  }
 }

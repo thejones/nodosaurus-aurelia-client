@@ -39,4 +39,11 @@ export class ArticleData {
             });
     }
 
+    delete(articleId) {
+        return this.http.delete(`${baseUrl}/${articleId}`)
+            .then( response => {
+                return response.content;
+            });
+    }
+
 }

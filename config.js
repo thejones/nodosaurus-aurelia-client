@@ -46,6 +46,7 @@ System.config({
     "core-js": "npm:core-js@1.2.1",
     "fetch": "github:github/fetch@0.9.0",
     "font-awesome": "npm:font-awesome@4.4.0",
+    "lodash": "npm:lodash@3.10.1",
     "md5": "github:blueimp/JavaScript-MD5@1.1.1",
     "text": "github:systemjs/plugin-text@0.0.2",
     "github:aurelia/animator-css@0.16.0": {
@@ -212,6 +213,9 @@ System.config({
     },
     "npm:inherits@2.0.1": {
       "util": "github:jspm/nodelibs-util@0.1.0"
+    },
+    "npm:lodash@3.10.1": {
+      "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:process@0.11.2": {
       "assert": "github:jspm/nodelibs-assert@0.1.0"

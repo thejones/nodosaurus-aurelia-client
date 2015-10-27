@@ -4,6 +4,7 @@
             <tr>
                 <th>Title</th>
                 <th>Content</th>
+                <th>Author</th>
                 <th>
                     <a show.bind="isAuthenticated" route-href="route:create;" class="btn btn-default">Create New
                     </a>
@@ -16,11 +17,15 @@
             <tr repeat.for="article of articles">
                 <td>${article.title}</td>
                 <td>${article.content.substring(0,29)}...</td>
+                <td>${article.user.username ? article.user.username : '?'}</td>
                 <td>
                     <div class="" show.bind="$parent.isAuthenticated && $parent.ownResource(article) && $parent.hasActiveSubscription" >
                         <a route-href="route:edit; params.bind:{id:article._id}"  class="btn btn-default">Edit
                         </a>
+                        <button click.delegate="$parent.deleteArticle(article._id)" class="btn btn-danger">Delete</button>
+
                     </div>
+
 
                 </td>
             </tr>

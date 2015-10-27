@@ -1,0 +1,18 @@
+<template>
+    <div class="center-form panel col-md-6">
+      <div class="panel-body">
+        <h2 class="text-center">Plan Information</h2>
+        <h3>Current plan is : ${stripeInfo.plan}</h3>
+        <form method="post"  name="loginForm">
+
+            <div class="" show.bind="stripeInfo.plan == 'free' " >
+                <button type="submit" click.delegate="subscribe()" class="btn btn-lg  btn-block btn-success">Go pro!</button>
+            </div>
+            <div class="" show.bind="stripeInfo.plan == 'pro'" >
+                <button type="submit" click.delegate="unsubscribe()" class="btn btn-lg  btn-block btn-success">Unsubscribe</button>
+
+            </div>
+        </form>
+      </div>
+    </div>
+</template>

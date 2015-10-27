@@ -3,19 +3,20 @@ import {bindable } from 'aurelia-framework';
 import {HttpClient} from 'aurelia-http-client';
 import {AuthService} from 'aurelia-auth';
 import {ArticleData} from "./articleData";
+import {UserProfile} from './../user';
 
 
-@inject(AuthService, ArticleData)
+@inject(AuthService, ArticleData, UserProfile)
 export class List{
 
-  currentUser = "";
   _isAuthenticated = false;
   _ownResource = false;
   hasActiveSubscription = false;
 
-  constructor(auth, articleData){
+  constructor(auth, articleData, userProfile){
     this.auth = auth;
     this.articleData = articleData;
+    this.userProfile = userProfile;
 
   }
 
@@ -25,21 +26,20 @@ export class List{
   }
 
   ownResource(article) {
-      if(this.currentUser && this.currentUser._id && article.user != null){
-          return this.currentUser._id === article.user._id;
+      if(this.userProfile.currentUser && this.userProfile.currentUser._id && article.user != null){
+          return this.userProfile.currentUser._id === article.user._id;
       }else{
           return false;
       }
 
   }
   hasActiveSub(user){
-      if(user && user.stripe.status &&  user.stripe.status == "active" || user.stripe.status == "trialing"){
+      if(user && user.stripe.plan &&  user.stripe.plan == "pro"){
                 return this.hasActiveSubscription = true;
             }else{
                 return this.hasActiveSubscription = false;
             }
-}
-
+  }
 
   getArticles(){
       return this.articleData
@@ -49,12 +49,21 @@ export class List{
 
   getUser(){
       self = this;
-      return this.auth.getMe()
+      return this.userProfile.setUser()
             .then(data=>{
-              this.currentUser = data;
-              self.hasActiveSub(this.currentUser);
-          }).catch((e) => {console.log("No user returned")});
+              self.hasActiveSub(this.userProfile.currentUser);
+          }).catch((e) => {
+              console.log("No user returned")}
+          );
 
+  }
+
+  deleteArticle(articleId){
+      return this.articleData
+        .delete(articleId)
+        .then(() =>{
+            this.getArticles();
+        });
   }
 
   activate(){
