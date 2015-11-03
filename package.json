@@ -1,6 +1,6 @@
 {
   "name": "nodosaurus-aurelia-client",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "sample application that relies on nodosaurus (hapi server)",
   "main": "dist/commonjs/index.js",
   "devDependencies": {
