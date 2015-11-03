@@ -24,7 +24,9 @@ export default class{
 				{ route: 'signup',        moduleId: './signup',       nav: false, title:'Signup' },
 				{ route: 'login',        moduleId: './login',       nav: false, title:'Login' },
 				{ route: 'logout',        moduleId: './logout',       nav: false, title:'Logout' },
-				{ route: 'profile',        moduleId: './profile',       nav: false, title:'Profile', href:'#profile', name: 'profile' }
+				{ route: 'profile',        moduleId: './profile',       nav: false, title:'Profile', href:'#profile', name: 'profile' },
+				{ route: 'profile/forgot',        moduleId: './forgot-password',       nav: false, title:'Forgot' },
+				{ route: 'reset/:token',        moduleId: './reset-password',       nav: false, title:'Reset' },
 				]);
 			};
 

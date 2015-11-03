@@ -27,15 +27,9 @@ describe('the App module', () => {
     expect(sut.router.title).toEqual('Aurelia');
   });
 
-  it('should have a welcome route', () => {
-    expect(sut.router.routes).toContain({ route: ['','welcome'], name: 'welcome',  moduleId: './welcome', nav: true, title:'Welcome' });
-  });
 
   it('should have a flickr route', () => {
      expect(sut.router.routes).toContain({ route: 'flickr', name: 'flickr', moduleId: './flickr', nav: true, title:'Flickr' });
   });
 
-  it('should have a child router route', () => {
-    expect(sut.router.routes).toContain({ route: 'child-router', name: 'child-router', moduleId: './child-router', nav: true, title:'Child Router' });
-  });
 });

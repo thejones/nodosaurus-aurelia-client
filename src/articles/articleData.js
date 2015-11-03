@@ -1,7 +1,7 @@
 import {inject} from "aurelia-framework";
 import {HttpClient} from "aurelia-http-client";
 
-let baseUrl = 'http://localhost:3001/api/articles';
+let baseUrl = 'https://localhost:3001/api/articles';
 
 @inject(HttpClient)
 export class ArticleData {

@@ -1,22 +1,24 @@
 import {AuthService} from 'aurelia-auth';
 import {inject} from 'aurelia-framework';
 import {HttpClient} from "aurelia-http-client";
+import {Router} from "aurelia-router";
 import md5 from "md5";
 import {UserProfile} from './user';
 
-let baseUrl = 'http://localhost:3001/auth/me';
+let baseUrl = 'https://localhost:3001/auth/me';
 
 
-@inject(AuthService, UserProfile, HttpClient )
+@inject(AuthService, UserProfile, HttpClient, Router )
 
 export class Profile{
 	heading = 'Profile';
 	email='';
 	password='';
 
-	constructor(auth, userProfile, httpClient){
+	constructor(auth, userProfile, httpClient, router){
 		this.auth = auth;
 		this.http = httpClient;
+		this.router = router;
 		this.gravatarURL = "";
 		this.profile = {};
 		this.userProfile = userProfile;
@@ -24,16 +26,11 @@ export class Profile{
 
 	activate(){
 		var self = this;
-		if(!self.userProfile.currentUser.hasOwnProperty("email")){
-			return this.userProfile.setUser()
+		return this.userProfile.setUser()
 			.then(response => {
 				self.profile = this.userProfile.currentUser;
 				self.gravatarURL = "http://www.gravatar.com/avatar/" + md5(self.profile.email) + ".jpg?s=150";
 			});
-		}else{
-			self.profile = this.userProfile.currentUser;
-			self.gravatarURL = "http://www.gravatar.com/avatar/" + md5(self.profile.email) + ".jpg?s=150";
-		}
 	}
 
 	update(){
@@ -41,12 +38,11 @@ export class Profile{
 		this.http.put(`${baseUrl}`, this.profile)
             .then( () => {
 				return self.userProfile.setUser()
-				.then(response => {
-					self.profile = self.userProfile.currentUser;
-					self.gravatarURL = "http://www.gravatar.com/avatar/" + md5(self.profile.email) + ".jpg?s=150";
-				});
-			}
-
+					.then(response => {
+						self.profile = self.userProfile.currentUser;
+						self.gravatarURL = "http://www.gravatar.com/avatar/" + md5(self.profile.email) + ".jpg?s=150";
+					});
+				}
 			);
 
 	}
@@ -56,6 +52,7 @@ export class Profile{
 		this.http.delete(`${baseUrl}/delete`)
             .then( response => {
 				return self.userProfile.clearUser();
+				this.router.navigate('/');
 			}
 
 		);

@@ -4,7 +4,7 @@ import {HttpClient} from "aurelia-http-client";
 import md5 from "md5";
 import _ from "lodash";
 
-let baseUrl = 'http://localhost:3001/users/billing';
+let baseUrl = 'https://localhost:3001/users/billing';
 
 
 @inject(HttpClient)
